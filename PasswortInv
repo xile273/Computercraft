@@ -1,0 +1,47 @@
+function Button()
+while true do 
+  local SideOut = "bottom"
+  local Password = "555"
+  local OpenTime = 10
+  local Input = read("*")
+  if Input == Password then
+    term.setCursorPos(1,2)
+    write("Passwort aktzeptiert")
+    rs.setOutput(SideOut, false)
+    sleep(OpenTime)
+    rs.setOutput(SideOut, true)
+    term.clear()
+    term.setCursorPos(1,1)
+    print("Bitte Passwort eingeben:")
+  else
+    term.setCursorPos(1,2)
+    write("Du kleines Arschloch")
+    sleep(1)
+    term.clear()
+    term.setCursorPos(1,1)
+    print("Bitte Passwort eingeben:")
+end
+end
+end
+
+function Redstone()
+while true do 
+local SideIn = "back"
+local SideOut = "bottom"
+local OpenTime = 10
+os.pullEvent("redstone")
+if rs.getInput(SideIn) == true then
+ rs.setOutput(SideOut,false)
+ sleep(OpenTime)
+ rs.setOutput(SideOut, true)
+ end
+ end
+ end
+ 
+
+while true do 
+rs.setOutput("true")
+ parallel.waitForAll(Button, Redstone)
+end
+  
+
